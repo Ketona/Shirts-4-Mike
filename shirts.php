@@ -1,5 +1,6 @@
 <?php 
 $pageTitle = "Mike's Full Catalog Of Shirts";
+$section = "shirts";
 include('inc/header.php'); ?>
 
 	<div class="section page">
@@ -8,4 +9,4 @@ include('inc/header.php'); ?>
 
 	</div>
 
-<?php include('inc/header.php'); ?>
+<?php include('inc/footer.php'); ?>
