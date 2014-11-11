@@ -1,4 +1,6 @@
-<?php include('inc/header.php'); ?>
+<?php 
+$pageTitle = "Mike's Full Catalog Of Shirts";
+include('inc/header.php'); ?>
 
 	<div class="section page">
 
