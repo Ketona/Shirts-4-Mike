@@ -1,13 +1,51 @@
 <?php
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name = $_POST["name"];
-	$email = $_POST["email"];
-	$message = $_POST["message"];
+	$name = trim($_POST["name"]);
+	$email = trim($_POST["email"]);
+	$message = trim($_POST["message"]);
 
-	$email_body = "Name: ".$name."\n"."Email: ".$email."\n"."Message: ".$message."\n";
+	if ($name == "" OR $email == "" OR $message == "") {
+		echo "You must specify a value for name, email address, and message.";
+		exit;
+	}
 
-	//TODO: Send Email
+	if(isset($_POST))
+	{
+		foreach ($POST as $value) {
+			if (stripos($value, 'Content-Type:') !== FALSE) {
+				echo "There was a problem with the information you entered.";
+				exit;
+			}
+		}
+	}
+
+	if ($_POST["address"] != "") {
+		echo "Your form submussion has an error.";
+		exit;
+	}
+
+	require_once('inc/phpmailer/class.phpmailer.php');
+
+	$mail = new PHPMailer();
+
+	if (!$mail->ValidateAddress($email)) {
+		echo "You must specify a valid email address.";
+		exit;	
+	}
+
+
+	$email_body = "Name: ".$name."<br>"."Email: ".$email."<br>"."Message: ".$message."<br>";
+
+	$mail->setFrom($email, $name);
+	$address = "ketevanzazarashvili@yahoo.com";
+	$mail->addAddress($address, "Shirts 4 Mike");
+	$mail->Subject = "Shirts 4 Mike Contact Form Submussion | " . $name;
+	$mail->msgHTML($email_body);
+
+	if(!$mail->send()) {
+		echo "There was a problem sendind the email: " . $mail->ErrorInfo;
+	}
 
 	header("Location: contact.php?status=thanks");
 	exit;
@@ -59,7 +97,15 @@ include('inc/header.php'); ?>
 								<textarea name="message" id="message"></textarea>
 							</td>
 						</tr>
-						
+						<tr style="display: none;">
+							<th>
+								<label for="address">Address</label>
+							</th>
+							<td>
+								<input type="text" name="address" id="address">
+								<p>Humans (and frogs): please leave this field blank.</p>
+							</td>
+						</tr>
 					</table>
 
 					<input type="submit" value="Send">
