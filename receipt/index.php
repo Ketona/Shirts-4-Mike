@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Thank you for your order!";
 $section = "none";
-include("inc/header.php"); ?>
+include("../inc/header.php"); ?>
 
 	<div class="section page">
 
@@ -11,10 +11,10 @@ include("inc/header.php"); ?>
 
 			<p>Thank you for your payment. Your transaction has been completed, and a recept for your purchase has been emailed to you. You may log into your account at <a href="http://www.paypal.com/us">www.paypal.com/us</a> to view details od this transaction.</p>
 
-			<p>Need another shirt already? Visit the <a href="shirts.php">Shirts Listing</a> page again.</p>
+			<p>Need another shirt already? Visit the <a href="../shirts.php">Shirts Listing</a> page again.</p>
 
 		</div>
 
 	</div>
 
-<?php include('inc/footer.php'); ?>
+<?php include('../inc/footer.php'); ?>
